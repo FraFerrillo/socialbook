@@ -9,7 +9,7 @@
   }
 
   .bg-image {
-    background-image: url('https://source.unsplash.com/WEQbe2jBg40/600x1200');
+    background-image: url('https://images.unsplash.com/photo-1513171920216-2640b288471b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');
     background-size: cover;
     background-position: center;
   }
@@ -20,9 +20,18 @@
 
   .btn-login {
     font-size: 0.9rem;
-    letter-spacing: 0.05rem;
-    padding: 10px 50px;
+    letter-spacing: 0.10rem;
+    padding: 10px 30px;
     border-radius: 2rem;
+    background-color: rgb(83,203,95);
+  }
+
+  .btn-register {
+    font-size: 0.9rem;
+    letter-spacing: 0.10rem;
+    padding: 6px 20px;
+    border-radius: 2rem;
+    background-color: rgb(24,119,242)
   }
 
   .form-label-group {
@@ -110,3 +119,9 @@
       color: #777;
     }
   }
+
+
+
+.btn-custom {
+    width: 100%;
+}

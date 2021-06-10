@@ -1,4 +1,14 @@
-<x-layout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
     <div class="container-fluid">
         <div class="row no-gutter">
         <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
@@ -33,7 +43,7 @@
                             <input type="checkbox" class="custom-control-input" id="customCheck1" {{ old('remember') ? 'checked' : '' }}>
                             <label class="custom-control-label" for="customCheck1">{{ __('Remember Me') }}</label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">{{ __('Login') }}</button>
+                        <button class="btn btn-lg btn-block btn-login text-white text-uppercase font-weight-bold mb-2" type="submit">{{ __('Login') }}</button>
                         @if (Route::has('password.request'))
                         <br>
                         <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -41,7 +51,7 @@
                         </a>
                         @endif
                         <hr>
-                        <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></button>
+                        <button class="btn btn-lg btn-block btn-register text-uppercase font-weight-bold mb-2"><a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a></button>
                     </form>
                 </div>
                 </div>
@@ -50,7 +60,8 @@
         </div>
         </div>
     </div>
-</x-layout>
-
-
+    <script src="/js/app.js"></script>
+    @stack('scripts')
+</body>
+</html>
 
