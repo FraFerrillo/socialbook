@@ -20,12 +20,12 @@
                             class="form-control">{{old('body')}}</textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-custom text-white">Pubblica</button>
+                    <button type="submit" class="btn btn-primary btn-custom">Pubblica</button>
                 </form>
             </div>
         </div>
         @foreach ($posts as $post)
-        <div class="card" style="width: 18rem;">
+        <div class="card my-5 w-100" style="width: 18rem;">
             <div class="card-body">
                 <div class="card-text">
                     {{$post->user->name}}
