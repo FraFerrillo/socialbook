@@ -43,7 +43,7 @@
         </div>
         @foreach ($posts as $post)
         <div class="card my-5 w-100 rounded shadow" style="width: 18rem;">
-            <img class="img-fluid" src="{{Storage::url($post->img)}}" class="card-img-top" alt="">
+            <div><img class="img-fluid" src="{{Storage::url($post->img)}}" class="card-img-top" alt=""></div>
             <div class="card-body">
                 <div class="card-text p-2">
                     <span class="fw-bold fs-5">{{$post->user->name}}</span>
@@ -55,6 +55,19 @@
                     </div>
                 </div>
             </div>
+            @if (Auth::user()->postsLike->pluck('id')->contains($post->id))
+                            <form class="me-3" action="{{route('posts.detach_user', compact('post'))}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-lg bg-primary"><i class="fas fa-thumbs-up"></i></button>
+                            </form>
+                            @else
+                            <form class="me-3" action="{{route('posts.attach_user', compact('post'))}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn-lg bg-secondary"><i class="far fa-thumbs-up"></i></button>
+                            </form>
+                            @endif
+
           </div>
         @endforeach
     </div>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -47,4 +48,25 @@ class HomeController extends Controller
         return view('homepage', compact('posts'));
 
     }
+
+    public function postsAttachUser(post $post)
+    {
+        Auth::user()->postsLike()->attach($post->id);
+        return redirect()->back();
+    }
+
+    public function postsDetachUser(post $post)
+    {
+        Auth::user()->postsLike()->detach($post->id);
+        return redirect()->back();
+    }
+ 
+    // public function postsIndexUser(post $post)
+    // {
+    //     $posts = Auth::user()->postsLike()->get();
+    //     return view('posts.index_user', compact('posts'));
+    // }
+
+
+
 }

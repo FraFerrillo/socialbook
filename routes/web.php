@@ -32,3 +32,9 @@ Route::post('/Salva/post',[HomeController::class,'store'])->name('store');
 // //*INDEX
 // Route::get('/tutti/posts',[HomeController::class,'index']);
 
+//* LIKES
+
+Route::post('/attach/user/announcement/{post}', [HomeController::class, 'postsAttachUser'])->name('posts.attach_user');
+Route::delete('/detach/user/announcement/{post}', [HomeController::class, 'postsDetachUser'])->name('posts.detach_user');
+
+
