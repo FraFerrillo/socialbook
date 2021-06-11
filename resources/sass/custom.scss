@@ -1,3 +1,8 @@
+*{
+    font-family: 'Baloo Tammudu 2', cursive;
+}
+
+
 :root {
     --input-padding-x: 1.5rem;
     --input-padding-y: 0.75rem;
@@ -124,6 +129,9 @@
 
 .btn-custom {
     width: 100%;
+    font-size: medium;
+    background-color: rgb(42,187,231);
+    letter-spacing: 1px;
 }
 
 

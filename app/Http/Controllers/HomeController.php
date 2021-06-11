@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -27,9 +28,15 @@ class HomeController extends Controller
         return view('homepage');
     }
 
-    public function store(Request $request){
-        Post::create($request->all());
+    public function store(PostRequest $request){
 
+        Post::create([
+            'user_id'=>$request->user_id,
+            'body'=>$request->body,
+            'img'=>empty($request->file('img')) ? null : $request->file('img')->store('public/img'),
+            // 'created_at'=>$request->created_at,
+            // 'updated_at'=>$request->updated_at,
+        ]);
         return redirect()->back()->with('message','Post pubblicato con successo!');
     }
 

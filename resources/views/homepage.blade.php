@@ -10,27 +10,49 @@
     <div class="col-12 col-md-4 offset-md-2">
         <div class="card rounded bg-white shadow">
             <div class="card-body">
-                <div class="card-text">
+                @if (session('message'))
+                <div class="alert alert-success my-3">
+                    {{session('message')}}
+                </div>
+                @endif
+                @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                <div class="alert alert-danger my-2">
+                    <p>{{$error}}</p>
+                </div>
+                @endforeach
+
+                @endif
+                <div class="card-text p-2">
                 <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                         <input type="hidden" name="user_id" value="{{Auth::id()}}">
                         <div class="mb-3 form-group row">
-                            <label for="body">A cosa stai pensando ?</label>
+                            <label class="fw-bold h5" for="body">A cosa stai pensando ?</label>
                             <textarea class="bg-light rounded" name="body" id="body" cols="30" rows="3"
                             class="form-control">{{old('body')}}</textarea>
                         </div>
+                        <div class="mb-3 form-group row">
+                            <label for="img"><i class="fas fa-images fa-2x text-success"></i></label>
+                            <input type="file" name="img" value="{{old('img')}}" class="form-control" id="img">
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-custom">Pubblica</button>
+                    <button type="submit" class="btn btn-custom text-white">Pubblica</button>
                 </form>
             </div>
         </div>
         @foreach ($posts as $post)
-        <div class="card my-5 w-100" style="width: 18rem;">
+        <div class="card my-5 w-100 rounded shadow" style="width: 18rem;">
+            <img class="img-fluid" src="{{Storage::url($post->img)}}" class="card-img-top" alt="">
             <div class="card-body">
-                <div class="card-text">
-                    {{$post->user->name}}
-                    {{$post->body}}
-                    {{$post->created_at}}
+                <div class="card-text p-2">
+                    <span class="fw-bold fs-5">{{$post->user->name}}</span>
+                    <br>
+                        {{$post->body}}
+
+                    <div class="text-end">
+                        {{$post->created_at}}
+                    </div>
                 </div>
             </div>
           </div>
