@@ -69,6 +69,10 @@
                     </form>
                 @endif
             </div>
+            <div class="card-footer text-start">
+            <p class="far fa-thumbs-up rounded">    {{ DB::table('post_user')->where(['post_id' => $post->id])->count() }}</p>
+            
+            </div>
         </div>
         @endforeach
     </div>
