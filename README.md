@@ -22,6 +22,7 @@
 * Pivot - con foreign key user e post
 * funzioni belongToMany
 * funzioni attach in cui colleghi user a post, detach in cui scolleghi user a post
+* SISTEMARE FRONTEND
 
 
  
