@@ -55,20 +55,21 @@
                     </div>
                 </div>
             </div>
-            @if (Auth::user()->postsLike->pluck('id')->contains($post->id))
-                            <form class="me-3" action="{{route('posts.detach_user', compact('post'))}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn-lg bg-primary"><i class="fas fa-thumbs-up"></i></button>
-                            </form>
-                            @else
-                            <form class="me-3" action="{{route('posts.attach_user', compact('post'))}}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn-lg bg-secondary"><i class="far fa-thumbs-up"></i></button>
-                            </form>
-                            @endif
-
-          </div>
+            <div class="text-end">
+                @if (Auth::user()->postsLike->pluck('id')->contains($post->id))
+                    <form class="me-3" action="{{route('posts.detach_user', compact('post'))}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn like-review"><i class="fas fa-thumbs-up fa-2x" aria-hidden="false"></i></button>
+                    </form>
+                @else
+                    <form class="me-3" action="{{route('posts.attach_user', compact('post'))}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn like-review"><i class="far fa-thumbs-up fa-2x" aria-hidden="true"></i></button>
+                    </form>
+                @endif
+            </div>
+        </div>
         @endforeach
     </div>
 
