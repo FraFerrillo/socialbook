@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\FriendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/homepage', [App\Http\Controllers\HomeController::class, 'index'])->name('homepage');
+Route::get('/homepage', [HomeController::class, 'index'])->name('homepage');
 
 // // //*CREATE
 // Route::get('/crea/post',[HomeController::class,'create']);
@@ -36,5 +37,16 @@ Route::post('/Salva/post',[HomeController::class,'store'])->name('store');
 
 Route::post('/attach/user/announcement/{post}', [HomeController::class, 'postsAttachUser'])->name('posts.attach_user');
 Route::delete('/detach/user/announcement/{post}', [HomeController::class, 'postsDetachUser'])->name('posts.detach_user');
+
+
+// USER LIST
+// Route::get('/homepage', [HomeController::class, 'indexUsers']);
+
+// FRIENDS
+
+Route::post('/friend', [FriendController::class, 'indexFriends']);
+Route::post('/friend/remove', [FriendController::class, 'remove']);
+Route::get('/friend/{id}', [FriendController::class, 'showFriends']);
+Route::post('/request', [HomeController::class, 'request'])->name('request');
 
 

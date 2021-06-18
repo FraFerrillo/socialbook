@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Friend;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +47,8 @@ class HomeController extends Controller
     public function index($orderBy = 'created_at')
     {
         $posts = Post::orderByDesc('created_at')->get();
-        return view('homepage', compact('posts'));
+        $users = User::orderByDesc('id')->get();
+        return view('homepage', compact('posts', 'users'));
 
     }
 
@@ -60,7 +63,43 @@ class HomeController extends Controller
         Auth::user()->postsLike()->detach($post->id);
         return redirect()->back();
     }
- 
+    public function request(Request $request) {
+        $user = Friend::all()->where('user_id_2', '=', Auth::user()->id)->where('user_id_1', '=', $request->user_id)->first();
+        if ($request->isRequest) {
+            $user->approved = true;
+            $user->save();
+            return [
+                'user_id' => $request->user_id,
+                'true' => true
+            ];
+        }
+        // $user->delete();
+        // return [
+        //     'user_id' => $request->user_id,
+        //     'true' => false
+        // ];
+    }
+
+    public function indexFriends(Request $request) {
+        $friend = new Friend;
+        $friend->user_id_1 = Auth::user()->id;
+        $friend->user_id_2 = $request->friend_id;
+        $friend->save();
+
+        return [
+            'friend_id' => $request->friend_id
+        ];
+    }
+    public function showFriends($id) {
+        $user = User::find($id);
+        return view('friend.show')->withUser($user);
+    } 
+    // public function indexUsers($orderBy = 'created_at')
+    // {
+    //     $users = User::orderByDesc('id')->get();
+    //     return view('homepage', compact('users'));
+
+    // }
     // public function postsIndexUser(post $post)
     // {
     //     $posts = Auth::user()->postsLike()->get();

@@ -77,12 +77,23 @@
         @endforeach
     </div>
 
-    <div class="col-12 col-md-2 offset-md-2">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus quam et, ratione mollitia exercitationem, eligendi, at possimus ad consequuntur excepturi eos! Nisi neque harum doloribus dicta optio voluptatibus veritatis praesentium.
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta debitis quasi quidem reiciendis sit consequuntur ullam cupiditate neque quia, dolore, a voluptas vitae. Eum iste quas quisquam laborum nisi commodi.
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit perferendis aut ipsa! Quo optio repellat dolor culpa voluptate doloribus mollitia sunt temporibus impedit aliquam maxime unde, expedita sed at ipsam.
 
-    </div>
+<!-- right column  -->
+
+    <div class="col-12 col-md-2 offset-md-2">
+        
+        <ul>
+        @foreach ($users as $user)
+
+                    <li><strong>{{$user->name}}</strong>
+                    <form class="me-3" action="{{route('request')}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn like-review"><i class="fas fa-user-plus" aria-hidden="true"></i></button>
+                    </form></li>
+                    
+                    
+        @endforeach
+                    </ul>
     </div>
 </div>
 </x-layout>
