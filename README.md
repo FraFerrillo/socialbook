@@ -1,9 +1,9 @@
 # Pagina principale utente non registrato - DONE - fix register button
 
 # Home per utenti registrati
- * Navbar
- * Crea post
-  * inserire testo/immagini/video/reaction
+ <!-- * Navbar -->
+ <!-- * Crea post -->
+  <!-- * inserire testo/immagini -->
  * Feed post
  * Amici
  * Gruppi
